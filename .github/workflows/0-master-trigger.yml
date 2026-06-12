@@ -32,7 +32,7 @@ jobs:
         run: npm install
 
       - name: Generate Audio (Madhur)
-        run: python scripts/generate_audio_madhur.py
+        run: python scripts/generate_audio_suresh.py
 
       - name: Bundle Project
         run: |
@@ -44,7 +44,7 @@ jobs:
 
       - name: Render Full Video
         run: |
-          npx remotion render StomachGrowl out/StomachGrowl_FINAL.mp4 --codec=h264 --crf=18
+          npx remotion render out/bundle.js StomachGrowl out/StomachGrowl_SURESH_V2.mp4 --codec=h264 --crf=18
         env:
           REMOTION_ALLOW_EVAL: true
 
@@ -52,5 +52,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: StomachGrowl-FINAL
-          path: out/StomachGrowl_FINAL.mp4
+          path: out/StomachGrowl_SURESH_V2.mp4
           if-no-files-found: error
