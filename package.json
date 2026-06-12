@@ -1,0 +1,25 @@
+{
+  "name": "stomach-growl-animation",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render StomachGrowl out/StomachGrowl_FINAL.mp4",
+    "preview": "remotion preview StomachGrowl",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "remotion": "^4.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/renderer": "^4.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "remotion": {
+    "entryPoint": "src/index.ts"
+  }
+}
