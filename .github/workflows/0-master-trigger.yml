@@ -1,0 +1,56 @@
+name: "0 — MASTER TRIGGER (Madhur Narrator)"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  production:
+    name: "Full Video Production (Madhur)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install System Deps
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+
+      - name: Install Python Deps
+        run: pip install edge-tts --quiet
+
+      - name: Install Node Deps
+        run: npm install
+
+      - name: Generate Audio (Madhur)
+        run: python scripts/generate_audio_madhur.py
+
+      - name: Bundle Project
+        run: |
+          mkdir -p out
+          npx remotion bundle src/index.ts --output=out/bundle.js
+
+      - name: Install Chrome
+        run: npx remotion browser ensure
+
+      - name: Render Full Video
+        run: |
+          npx remotion render out/bundle.js StomachGrowl out/StomachGrowl_FINAL.mp4 --codec=h264 --crf=18
+        env:
+          REMOTION_ALLOW_EVAL: true
+
+      - name: Upload Final Video
+        uses: actions/upload-artifact@v4
+        with:
+          name: StomachGrowl-FINAL
+          path: out/StomachGrowl_FINAL.mp4
+          if-no-files-found: error
