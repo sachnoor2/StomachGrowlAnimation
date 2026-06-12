@@ -44,7 +44,7 @@ jobs:
 
       - name: Render Full Video
         run: |
-          npx remotion render out/bundle.js StomachGrowl out/StomachGrowl_FINAL.mp4 --codec=h264 --crf=18
+          npx remotion render StomachGrowl out/StomachGrowl_FINAL.mp4 --codec=h264 --crf=18
         env:
           REMOTION_ALLOW_EVAL: true
 
