@@ -1,11 +1,11 @@
-name: "0 — MASTER TRIGGER (Madhur Narrator)"
+name: "0 — MASTER TRIGGER (Suresh Narrator)"
 
 on:
   workflow_dispatch:
 
 jobs:
   production:
-    name: "Full Video Production (Madhur)"
+    name: "Full Video Production (Suresh)"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
       - name: Install Node Deps
         run: npm install
 
-      - name: Generate Audio (Madhur)
+      - name: Generate Audio (Suresh)
         run: python scripts/generate_audio_suresh.py
 
       - name: Bundle Project
